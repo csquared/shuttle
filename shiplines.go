@@ -7,8 +7,9 @@ import (
 )
 
 func shipLinesToUrl(lines []string, url string) error {
-	body := strings.NewReader(strings.Join(lines, ""))
-	resp, err := http.Post(url, "text/plain", body)
+	body := strings.Trim(strings.Join(lines, ""), "\n")
+	reader := strings.NewReader(body)
+	resp, err := http.Post(url, "text/plain", reader)
 	if err != nil {
 		return err
 	}
