@@ -3,12 +3,11 @@ package main
 import (
 	"bufio"
 	"io"
-	"os"
 	"sync"
 )
 
 func pipeToHttp(reader io.Reader, url string, bufSize int) {
-	buffer := bufio.NewReader(os.Stdin)
+	buffer := bufio.NewReader(reader)
 	lineBuffer := make([]string, bufSize)
 
 	i := 0

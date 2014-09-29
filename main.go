@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"io"
 	"log"
 	"os"
 )
@@ -11,6 +11,6 @@ func main() {
 	if len(args) == 0 {
 		log.Fatal("Must include http address as first argument")
 	}
-	pipeToHttp(os.Stdin, args[0], 20)
-	fmt.Println("Done")
+	reader := io.TeeReader(os.Stdin, os.Stdout)
+	pipeToHttp(reader, args[0], 20)
 }
