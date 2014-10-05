@@ -1,16 +1,23 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
 )
 
 func main() {
-	args := os.Args[1:]
-	if len(args) == 0 {
+	var n int
+	flag.IntVar(&n, "n", 20, "number of lines to buffer before shipping")
+	flag.Parse()
+
+	if len(flag.Args()) == 0 {
 		log.Fatal("Must include http address as first argument")
 	}
 	reader := io.TeeReader(os.Stdin, os.Stdout)
-	pipeToHttp(reader, args[0], 20)
+	url := flag.Args()[0]
+	fmt.Println("url:", url, "n:", n)
+	pipeToHttp(reader, url, n)
 }
