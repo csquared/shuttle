@@ -2,6 +2,8 @@
 
 Shuttle newline delimited data from STDIN to http(s)
 
+[![Gobuild Download](http://gobuild.io/badge/github.com/csquared/shuttle/downloads.svg)](http://gobuild.io/github.com/csquared/shuttle)
+
 
 ## usage
 
